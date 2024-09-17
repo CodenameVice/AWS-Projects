@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Template to set up AWS Backup
+
+Resources:
+  MyBackupPlan:
+    Type: AWS::Backup::BackupPlan
+    Properties:
+      BackupPlan:
+        BackupPlanName: MyBackupPlan
+        Rules:
+          - RuleName: DailyBackup
+            TargetBackupVault: !Ref MyBackupVault
+            ScheduleExpression: cron(0 12 * * ? *)
+            StartWindowMinutes: 60
+            CompletionWindowMinutes: 180
+            BackupRuleTags:
+              - Key: "Name"
+                Value: "DailyBackup"
+
+  MyBackupVault:
+    Type: AWS::Backup::BackupVault
+    Properties:
+      BackupVaultName: MyBackupVault
+      EncryptionKeyArn: arn:aws:kms:region:account-id:key/key-id
