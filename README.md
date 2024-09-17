@@ -34,6 +34,79 @@ Welcome to my AWS Solutions Architect Portfolio! This repository showcases a col
 2. **Access the Web Application:**
    - Once the stack is created, find the EC2 instance's public IP address in the AWS Management Console under EC2 instances.
 
+## AWS Disaster Recovery Plan
+
+### Project Overview
+
+This project demonstrates a disaster recovery plan for a critical application running on EC2 with data stored in EBS volumes and an RDS database. It includes the setup of AWS Backup for daily backups and the process for restoring from backups.
+
+### Setup Instructions
+
+#### 1. Create EC2 Instance
+
+1. Go to the [EC2 Console](https://console.aws.amazon.com/ec2/).
+2. Launch an EC2 instance with your preferred AMI (Amazon Linux, Ubuntu, etc.).
+3. Configure the instance settings as needed and launch the instance.
+4. Install a sample application on the instance.
+
+#### 2. Attach EBS Volumes
+
+1. Go to the [EC2 Console](https://console.aws.amazon.com/ec2/).
+2. Create and attach one or more EBS volumes to the EC2 instance.
+3. Format and mount the volumes on the instance.
+
+#### 3. Create RDS Database
+
+1. Go to the [RDS Console](https://console.aws.amazon.com/rds/).
+2. Launch an RDS instance (e.g., MySQL, PostgreSQL).
+3. Configure the database and create a sample schema and data.
+
+#### 4. Configure AWS Backup
+
+**Create Backup Plan:**
+
+1. Go to the [AWS Backup Console](https://console.aws.amazon.com/backups/).
+2. Create a backup plan with a daily backup schedule.
+3. Include EC2 instances, EBS volumes, and RDS databases in the backup plan.
+
+**Create Backup Vault:**
+
+1. In the AWS Backup Console, create a backup vault.
+2. Configure encryption and access policies for the vault.
+
+**Set Up IAM Roles:**
+
+1. Create IAM roles with permissions for AWS Backup to access EC2, EBS, and RDS resources.
+2. Attach the roles to your AWS Backup plan.
+
+**Configure Alerts:**
+
+1. Set up CloudWatch alarms or SNS notifications for backup issues.
+
+### Recovery Process
+
+#### Simulate Data Loss
+
+- Terminate the EC2 instance or delete EBS volumes to simulate data loss.
+- Alternatively, delete the RDS instance for testing.
+
+#### Restore from Backup
+
+**EC2 Instance:**
+
+1. Use AWS Backup to restore the EC2 instance from the latest backup.
+2. Verify the instance is restored and the application is running.
+
+**EBS Volumes:**
+
+1. Restore EBS volumes from the backup vault.
+2. Attach the restored volumes to a new EC2 instance and verify data integrity.
+
+**RDS Database:**
+
+1. Restore the RDS database from the backup.
+2. Verify the database schema and data.
+
 ## Key Skills Demonstrated
 - **AWS Best Practices:** Security, Cost Management, High Availability, and Performance Optimization.
 - **Networking:** VPC setup, Subnet configurations, and Load Balancing.
@@ -41,11 +114,14 @@ Welcome to my AWS Solutions Architect Portfolio! This repository showcases a col
 - **Monitoring and Logging:** Using CloudWatch for logs and monitoring.
 - **Database Management:** Utilizing RDS and DynamoDB for database solutions.
 
-## How to Use
-Each project folder contains step-by-step instructions in the `README.md` files on how to replicate the project. CloudFormation templates, Terraform scripts, and architecture diagrams are provided for easy deployment. All projects use services available within the AWS Free Tier to minimize costs.
+## Documentation
 
-Feel free to explore the projects and replicate them to enhance your understanding of AWS cloud solutions!
+- Detailed backup and restore process is included in the [Backup and Restore Instructions](./docs/backup_restore_instructions.md).
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).
 
 ---
 
-If you have any questions or need further assistance, please open an issue or reach out to me directly.
+Feel free to explore the projects and replicate them to enhance your understanding of AWS cloud solutions!
