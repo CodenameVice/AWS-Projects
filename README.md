@@ -1,36 +1,22 @@
-# AWS-Projects
-Welcome to my AWS Solutions Architect Portfolio! This repository is a collection of hands-on projects demonstrating my expertise 
-in designing and deploying scalable, secure, and highly available cloud solutions using AWS services.
+# Basic AWS CloudFormation Template
 
-Each project showcases practical use cases and best practices based on real-world scenarios. Whether you're interested in serverless architectures, high-availability web apps, or 
-infrastructure automation, these projects illustrate key concepts of cloud architecture.
+This project contains a CloudFormation template for deploying a basic web application infrastructure on AWS.
 
-Projects Included:
-Highly Available Web Application
+## Project Components
 
-Services: EC2, Elastic Load Balancing, Auto Scaling, RDS
-Highlights: Scalability, Fault tolerance, and Cost optimization using AWS Free Tier.
-Serverless Application
+- **EC2 Instance:** Runs a basic web server.
+- **S3 Bucket:** Stores static files.
 
-Services: AWS Lambda, API Gateway, DynamoDB, S3
-Highlights: Event-driven design, automated scaling, and reduced infrastructure overhead.
-Infrastructure as Code (IaC)
+## How to Use
 
-Tools: AWS CloudFormation, Terraform
-Highlights: Infrastructure automation, repeatability, and environment consistency.
-Data Pipeline for Analytics
+1. **Deploy the CloudFormation Template:**
+   - Go to the [AWS CloudFormation Console](https://console.aws.amazon.com/cloudformation).
+   - Click "Create stack" and upload the `cloudformation-template.yml` file.
+   - Follow the prompts to create the stack.
 
-Services: AWS Glue, S3, Redshift
-Highlights: Data extraction, transformation, and loading (ETL) pipeline.
+2. **Access the Web Application:**
+   - Once the stack is created, find the EC2 instance's public IP address in the AWS Management Console under EC2 instances.
 
-Key Skills Demonstrated:
-AWS Best Practices: Security, Cost Management, High Availability, and Performance Optimization.
-Networking: VPC setup, Subnet configurations, and Load Balancing.
-Automation: Deploying resources with AWS CloudFormation and Terraform.
-Monitoring and Logging: CloudWatch for logs and monitoring.
-Database Management: RDS and DynamoDB for database solutions.
+## License
 
-How to Use:
-Each project folder contains step-by-step instructions in the README.md on how to replicate the project.
-CloudFormation templates, Terraform scripts, and architecture diagrams are provided for easy deployment.
-All projects use services available within the AWS Free Tier to minimize costs.
+This project is licensed under the GNU General Public License v3. See the [LICENSE](LICENSE) file for details.
