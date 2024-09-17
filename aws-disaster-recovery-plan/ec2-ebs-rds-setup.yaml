@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Template to set up EC2, EBS, and RDS resources
+
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0c55b159cbfafe1f0  # Replace with your preferred AMI
+      KeyName: my-key-pair  # Replace with your key pair name
+      BlockDeviceMappings:
+        - DeviceName: /dev/sda1
+          Ebs:
+            VolumeSize: 8
+            VolumeType: gp2
+
+  MyEBSVolume:
+    Type: AWS::EC2::Volume
+    Properties:
+      Size: 10
+      AvailabilityZone: !GetAtt MyEC2Instance.AvailabilityZone
+      VolumeType: gp2
+
+  MyRDSInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBInstanceClass: db.t2.micro
+      Engine: mysql
+      MasterUsername: admin
+      MasterUserPassword: password
+      DBName: mydatabase
+      AllocatedStorage: 20
+      BackupRetentionPeriod: 7
+      MultiAZ: false
